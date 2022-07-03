@@ -7,9 +7,9 @@
 
 ## React Prefetching
 
-Use this package by 3 steps to prefetch hovered links and fix fetch waterfalls to make your apps lightning fast.
+Use this package by 3 steps to **prefetch hovered links** and **fix fetch waterfalls** to make your apps lightning fast.
 
-You can read [this article](https://medium.com/@anokyy/the-easiest-way-to-prefetch-links-and-fix-fetch-waterfalls-in-react-query-useswr-apollo-client-or-33ae59409bf4) to know more.
+Read [this article](https://medium.com/@anokyy/the-easiest-way-to-prefetch-links-and-fix-fetch-waterfalls-in-react-query-useswr-apollo-client-or-33ae59409bf4) to know more.
 
 ## Problem
 
@@ -48,7 +48,7 @@ function C() {
   return <div>{data}</div>;
 }
 ```
-Then your app has fetch waterfalls issue and doesn't have the prefetching feature.
+This app has fetch waterfalls issue and doesn't have prefetching feature.
 
 # Solution
 
@@ -63,7 +63,7 @@ npm i react-prefetching
 ```tsx
 import { useQuery } from "react-query";
 import { Route, Routes } from "react-router-dom";
-import { Link, PrefetchRouter, useIsPrefetch } from "./Prefetch";
+import { Link, PrefetchRouter, useIsPrefetch } from "react-prefetching";
 
 export default function App() {
   return (
@@ -78,7 +78,7 @@ export default function App() {
 
 function A() {
   const { isLoading, data } = useQuery("A", () => fetchA());
-  if (useIsPrefetch()) return <B />; // <- 3. return Child if isPrefetch
+  if (useIsPrefetch()) return <B />; // <- 3. return Child if useIsPrefetch()
   
   if (isLoading) return <p>Loading</p>;
   return <div> {data} <B /> </div>;
@@ -86,7 +86,7 @@ function A() {
 
 function B() {
   const { isLoading, data } = useQuery("B", () => fetchB());
-  if (useIsPrefetch()) return <C />; // <- 3. return Child if isPrefetch
+  if (useIsPrefetch()) return <C />; // <- 3. return Child if useIsPrefetch()
 
   if (isLoading) return <p>Loading</p>;
   return <div> {data} <C /> </div>;
